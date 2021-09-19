@@ -15,13 +15,9 @@ app.use(express.json());
 app.use("/api/contacts", contactsRouter);
 
 app.use((err, req, res, next) => {
-  const {
-    status = "fail",
-    code = 500,
-    message = "Internal server error",
-  } = err;
+  const { status = 500, message = "Internal server error" } = err;
 
-  res.status(code).json({ status, code, message });
+  res.status(status).json({ message });
 });
 
 module.exports = app;
