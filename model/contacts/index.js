@@ -1,4 +1,3 @@
-// const readContacts = require("./readContacts.js");
 const listContacts = require("./listContacts.js");
 const getContactById = require("./getContactById.js");
 const addContact = require("./addContact.js");
