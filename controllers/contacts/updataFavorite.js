@@ -3,10 +3,13 @@ const { NotFound } = require("http-errors");
 const { sendSuccessRes } = require("../../utils");
 const { Contact } = require("../../models");
 
-const updateContact = async (req, res) => {
+const updateFavorite = async (req, res) => {
+  //   const { favorite } = await Contact.findById(req.params.contactId);
+
   const contact = await Contact.findByIdAndUpdate(
     req.params.contactId,
-    req.body,
+    { favorite: req.body.favorite },
+    // { favorite: !favorite },
     { new: true }
   );
 
@@ -17,4 +20,4 @@ const updateContact = async (req, res) => {
   sendSuccessRes(res, { contact });
 };
 
-module.exports = updateContact;
+module.exports = updateFavorite;
