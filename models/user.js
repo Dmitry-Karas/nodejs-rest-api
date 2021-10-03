@@ -36,6 +36,7 @@ userSchema.methods.createToken = function () {
   const payload = {
     _id: this._id,
   };
+
   return jwt.sign(payload, process.env.SECRET_KEY);
 };
 
