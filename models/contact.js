@@ -17,13 +17,16 @@ const contactSchema = Schema(
     },
     phone: {
       type: String,
-      unique: true,
       match: /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/,
       required: [true, "Phone number is required"],
     },
     favorite: {
       type: Boolean,
       default: false,
+    },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: "user",
     },
   },
   { versionKey: false, timestamps: true }
