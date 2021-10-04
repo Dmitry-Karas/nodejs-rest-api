@@ -17,7 +17,6 @@ const contactSchema = Schema(
     },
     phone: {
       type: String,
-      unique: true,
       match: /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/,
       required: [true, "Phone number is required"],
     },
@@ -25,11 +24,15 @@ const contactSchema = Schema(
       type: Boolean,
       default: false,
     },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: "user",
+    },
   },
   { versionKey: false, timestamps: true }
 );
 
-const JoiContactSchema = Joi.object({
+const joiContactSchema = Joi.object({
   name: Joi.string()
     .pattern(/^[A-Za-z\s]+$/)
     .min(3)
@@ -49,7 +52,7 @@ const JoiContactSchema = Joi.object({
   favorite: Joi.boolean(),
 });
 
-const JoiUpdateFavoriteSchema = Joi.object({
+const joiUpdateFavoriteSchema = Joi.object({
   favorite: Joi.boolean().required(),
 });
 
@@ -57,6 +60,6 @@ const Contact = model("Contact", contactSchema);
 
 module.exports = {
   Contact,
-  JoiContactSchema,
-  JoiUpdateFavoriteSchema,
+  joiContactSchema,
+  joiUpdateFavoriteSchema,
 };
