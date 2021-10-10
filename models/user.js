@@ -23,6 +23,9 @@ const userSchema = Schema(
       type: String,
       default: null,
     },
+    avatarURL: {
+      type: String,
+    },
   },
   { versionKey: false, timestamps: true }
 );
@@ -33,6 +36,10 @@ userSchema.methods.setPassword = function (password) {
 
 userSchema.methods.comparePassword = function (password) {
   return bcrypt.compareSync(password, this.password);
+};
+
+userSchema.methods.setAvatar = function (avatar) {
+  this.avatarURL = avatar;
 };
 
 userSchema.methods.createToken = function () {
