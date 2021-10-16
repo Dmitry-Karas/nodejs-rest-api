@@ -16,6 +16,9 @@ router.post(
   validation(joiUserSchema),
   controllerWrapper(authController.signup)
 );
+
+router.get("/verify/:verifyToken", controllerWrapper(authController.verify));
+
 router.post(
   "/login",
   validation(joiUserSchema),
