@@ -16,7 +16,6 @@ const login = async (req, res) => {
     throw new BadRequest("Invalid email or password");
   }
 
-  console.log(user);
   if (!user.verify) {
     throw new BadRequest("User is not verified");
   }
